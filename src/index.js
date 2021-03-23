@@ -4,7 +4,7 @@ import "./index.css";
 import Clock from "./App";
 
 function tick() {
-  ReactDOM.render(<Clock date={new Date()} />, document.getElementById("root"));
+  ReactDOM.render(<Clock />, document.getElementById("root"));
 }
 
 setInterval(tick, 1000);
