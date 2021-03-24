@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event";
 import React from "react";
 
 export default class Clock extends React.Component {
