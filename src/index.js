@@ -1,10 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Clock from "./App";
+import Clock, { Toggle } from "./App";
 
-function tick() {
-  ReactDOM.render(<Clock />, document.getElementById("root"));
-}
-
-setInterval(tick, 1000);
+ReactDOM.render(<Clock></Clock>, document.getElementById("root"));
+ReactDOM.render(<Toggle></Toggle>, document.getElementById("root"));
