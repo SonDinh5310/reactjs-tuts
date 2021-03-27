@@ -1,7 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Clock, { Toggle, ListExample, Blog, NameForm, Reservation } from "./App";
+import Clock, {
+    Toggle,
+    ListExample,
+    Blog,
+    NameForm,
+    Reservation,
+    Calculator,
+} from "./App";
 
 const numbers = [1, 2, 3, 4, 5, 6];
 const posts = [
@@ -20,6 +27,8 @@ ReactDOM.render(
         <Blog posts={posts}></Blog>
         <NameForm></NameForm>
         <Reservation />
+        <br />
+        <Calculator />
     </>,
     document.getElementById("root")
 );

@@ -196,3 +196,34 @@ export class Reservation extends React.Component {
         );
     }
 }
+
+function BoilingVerdict(props) {
+    if (props.celsius >= 100) {
+        return <p>The water would boil</p>;
+    }
+    return <p>The water would not boil</p>;
+}
+
+export class Calculator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+
+        this.state = { temparature: "" };
+    }
+
+    handleChange(e) {
+        this.setState({ temparature: e.target.value });
+    }
+
+    render() {
+        const temparature = this.state.temparature;
+        return (
+            <fieldset>
+                <legend>Enter temparature in Celsius:</legend>
+                <input value={temparature} onChange={this.handleChange} />
+                <BoilingVerdict celsius={parseFloat(temparature)} />
+            </fieldset>
+        );
+    }
+}
