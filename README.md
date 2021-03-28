@@ -27,3 +27,25 @@ class Car extends React.Component {
 ```
 
 # Function.prototype.bind()
+
+-   bind() cho phép chúng ta dễ dàng thiết lập một đối tượng cụ thể sẽ bị ràng buộc này khi một chức năng hoặc phương pháp được gọi.
+-   Các tác dụng của bind:
+
+    -   Cho phép set giá trị của biến "this"
+
+    ```jsx
+    const module = {
+        x: 42,
+        getX: function () {
+            return this.x;
+        },
+    };
+
+    const unboundGetX = module.getX;
+    console.log(unboundGetX()); // The function gets invoked at the global scope
+    // expected output: undefined
+
+    const boundGetX = unboundGetX.bind(module);
+    console.log(boundGetX());
+    // expected output: 42
+    ```
