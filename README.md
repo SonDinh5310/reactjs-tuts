@@ -34,8 +34,9 @@ class Car extends React.Component {
     -   Cho phép set giá trị của biến "this"
 
     ```jsx
+    //Global x not exist so it's undefined
     const module = {
-        x: 42,
+        x: 42, // this is local x
         getX: function () {
             return this.x;
         },
@@ -45,7 +46,25 @@ class Car extends React.Component {
     console.log(unboundGetX()); // The function gets invoked at the global scope
     // expected output: undefined
 
-    const boundGetX = unboundGetX.bind(module);
+    const boundGetX = unboundGetX.bind(module); // this will call the local x
     console.log(boundGetX());
     // expected output: 42
     ```
+
+    -   Cho phép tạo 1 curry function (Tức là ta có thể tao ra một function mới từ function cũ bằng cách gắn mặc định một tham số cho function cũ đó)
+
+    ```jsx
+    function log(level, time, msg){
+        console.log(level + “-” + time +”:” + msg);
+    }
+
+    function logAccessToday(msg){
+        log(“Access”, “Today”, msg);
+    }
+
+    var  logAccessToday = log.bind(“Access”, “Today”, msg);
+
+    logAccessToday("Sever Access");
+    ```
+
+# Function.name
