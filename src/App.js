@@ -204,9 +204,27 @@ function BoilingVerdict(props) {
 }
 
 const scaleNames = {
-  c: "Celcisus",
+  c: "Celsisus",
   f: "Fahrenheit",
 };
+
+function toCelsius(fahrenheit) {
+  return ((fahrenheit - 32) * 5) / 9;
+}
+
+function toFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
+}
+
+function tryConvert(temparature, convert) {
+  const input = parseFloat(temparature);
+  if (Number.isNaN(input)) {
+    return "";
+  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
 
 class TemparatureInput extends React.Component {
   constructor(props) {
@@ -217,11 +235,12 @@ class TemparatureInput extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ temparature: e.target.value });
+    // this.setState({ temparature: e.target.value });
+    this.props.onTemparatureChange(e.target.value);
   }
 
   render() {
-    const temparature = this.state.temparature;
+    const temparature = this.props.temparature;
     const scale = this.props.scale;
     return (
       <fieldset>
@@ -232,6 +251,11 @@ class TemparatureInput extends React.Component {
   }
 }
 export class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+  }
   render() {
     return (
       <div>
