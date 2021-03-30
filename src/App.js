@@ -229,10 +229,7 @@ function tryConvert(temparature, convert) {
 class TemparatureInput extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this);
     this.handleChange = this.handleChange.bind(this);
-
-    this.state = { temparature: "" };
   }
 
   handleChange(e) {
@@ -256,12 +253,37 @@ export class Calculator extends React.Component {
     super(props);
     this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
     this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.state = { temparature: "", scale: "c" };
+  }
+
+  handleCelsiusChange(temparature) {
+    this.setState({ scale: "c", temparature });
+  }
+
+  handleFahrenheitChange(temparature) {
+    this.setState({ scale: "f", temparature });
   }
   render() {
+    const scale = this.state.scale;
+    const temparature = this.state.temparature;
+    const celsius =
+      scale === "f" ? tryConvert(temparature, toCelsius) : temparature;
+    const fahrenheit =
+      scale === "c" ? tryConvert(temparature, toFahrenheit) : temparature;
+
     return (
       <div>
-        <TemparatureInput scale="c"></TemparatureInput>
-        <TemparatureInput scale="f"></TemparatureInput>
+        <TemparatureInput
+          scale="c"
+          temparature={celsius}
+          onTemparatureChange={this.handleCelsiusChange}
+        ></TemparatureInput>
+        <TemparatureInput
+          scale="f"
+          temparature={fahrenheit}
+          onTemparatureChange={this.handleFahrenheitChange}
+        ></TemparatureInput>
+        <BoilingVerdict celsius={parseFloat(celsius)} />
       </div>
     );
   }

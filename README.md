@@ -66,5 +66,3 @@ class Car extends React.Component {
 
     logAccessToday("Sever Access");
     ```
-
-# Function.name
