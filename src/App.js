@@ -229,6 +229,7 @@ function tryConvert(temparature, convert) {
 class TemparatureInput extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this);
     this.handleChange = this.handleChange.bind(this);
 
     this.state = { temparature: "" };
